@@ -28,19 +28,20 @@ function handleSubmit(e){
 
   setTarefas([...tarefas, input, datainput, area]);
   setInput('');
-  
+  setDataInput('');
+  setAreas('');
 }
 
   return (
     <div className="App">
       <header className="App-header">
         <form onSubmit={handleSubmit}>
+          
           <label>Lista de tarefas </label>
           <input value={input} onChange={ (e) => setInput(e.target.value)}  placeholder="Digite uma tarefa.... " required/>
-
-
           
           <input className="data" type="date" value={datainput} onChange={ (e) => setDataInput(e.target.value)} required/>
+          
           <textarea value={area} onChange={(e) => setAreas(e.target.value)} className="textArea" placeholder="Digite o detalhe da sua tarefa...."></textarea> <br/>
 
           <button type="submit">Adicionar Lista</button>
