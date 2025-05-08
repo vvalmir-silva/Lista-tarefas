@@ -6,7 +6,9 @@ import "./App.css";
 function App() {
 
 const[input, setInput] = useState('')
+const[datainput, setDataInput] = useState('')
 const[tarefas, setTarefas] = useState([]);
+const[area, setAreas] = useState('')
 
 useEffect(() =>{
   const tarefasStorage = localStorage.getItem('@tarefa');
@@ -24,8 +26,9 @@ useEffect(()=>{
 function handleSubmit(e){
   e.preventDefault();
 
-  setTarefas([...tarefas, input]);
+  setTarefas([...tarefas, input, datainput, area]);
   setInput('');
+  
 }
 
   return (
@@ -33,13 +36,20 @@ function handleSubmit(e){
       <header className="App-header">
         <form onSubmit={handleSubmit}>
           <label>Lista de tarefas </label>
-          <input value={input} onChange={ (e) => setInput(e.target.value)}  placeholder="Digite sua lista"/>
+          <input value={input} onChange={ (e) => setInput(e.target.value)}  placeholder="Digite uma tarefa.... " required/>
+
+
+          
+          <input className="data" type="date" value={datainput} onChange={ (e) => setDataInput(e.target.value)} required/>
+          <textarea value={area} onChange={(e) => setAreas(e.target.value)} className="textArea" placeholder="Digite o detalhe da sua tarefa...."></textarea> <br/>
+
           <button type="submit">Adicionar Lista</button>
         </form>
 
         <ul>
           {tarefas.map(tarefas =>(
             <li key={tarefas}>{tarefas}</li>
+            
           ))}
         </ul>
       </header>
